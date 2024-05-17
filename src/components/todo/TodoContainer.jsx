@@ -9,18 +9,26 @@ const TodoContainer = () => {
     {
       id: 1,
       title: "할일 1",
-      content: "할일 내용",
+      content: "할일 내용 1",
       isDone: false,
     },
+    {
+      id: 2,
+      title: "할일 2",
+      content: "할일 내용 2",
+      isDone: true,
+    },
   ]);
-  console.log("@@ todos", todos);
+
+  const workingTodos = todos.filter((todo) => !todo.isDone);
+  const doneTodos = todos.filter((todo) => todo.isDone);
+
   return (
     <Container>
+      <h1>Todo List</h1>
       <TodoForm setTodos={setTodos} />
-      <div>
-        <TodoList></TodoList>
-        <TodoItem />
-      </div>
+      <TodoList title="Working" todos={workingTodos} />
+      <TodoList title="Done" todos={doneTodos} />
     </Container>
   );
 };
