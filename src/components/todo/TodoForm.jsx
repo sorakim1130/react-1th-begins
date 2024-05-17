@@ -3,18 +3,15 @@ import { useState } from "react";
 
 //NOTE: 제어/비제어 컴포넌트
 const TodoForm = ({ setTodos }) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-
-  if (!title.trim() || !content.trim())
-    return alert("제목과 내용을 입력해주세요.");
-
   const onSubmit = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
     const title = formData.get("title");
     const content = formData.get("content");
+
+    if (!title.trim() || !content.trim())
+      return alert("제목과 내용을 입력해주세요.");
 
     const nextTodo = {
       id: crypto.randomUUID(),
